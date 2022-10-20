@@ -5,5 +5,3 @@ In this project we have two main Files
 
 1. ScanDocument.py
 2. ConfirmDocument.py
-
-

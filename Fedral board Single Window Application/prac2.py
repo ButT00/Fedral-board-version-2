@@ -1,15 +1,10 @@
-from tkinter import *
-from tkdocviewer import *
-
-# Create a root window
+from tkPDFViewer import tkPDFViewer as pdf
+from tkinter import*
 root = Tk()
 
-# Create a DocViewer widget
-v = DocViewer(root)
-v.pack(side="top", expand=1, fill="both")
-
-# Display some document
-v.display_file("RESULT CANCELLATION CERTIFICATE.pdf")
-
-# Start Tk's event loop
+#create object like this.
+variable1 = pdf.ShowPdf()
+#Add your pdf location and width and height.
+variable2 = variable1.pdf_view(root,pdf_location=r"PDF.pdf",width=50,height=100)
+variable2.pack()
 root.mainloop()
