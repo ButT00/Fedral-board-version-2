@@ -1,10 +1,29 @@
-from tkPDFViewer import tkPDFViewer as pdf
-from tkinter import*
-root = Tk()
+from datetime import datetime
 
-#create object like this.
-variable1 = pdf.ShowPdf()
-#Add your pdf location and width and height.
-variable2 = variable1.pdf_view(root,pdf_location=r"PDF.pdf",width=50,height=100)
-variable2.pack()
-root.mainloop()
+
+
+# Current date.
+today = datetime.today()
+Dated = today.date()
+print(Dated)
+ 
+
+# import datetime
+import  datetime
+
+# Current date.
+current_year  = datetime.date.today()
+# Dated = today.date()
+year = current_year.strftime("%Y")
+
+
+
+
+# # Current date.
+# today = datetime.today()
+# Dated = today.date()
+ 
+# print(Dated)
+
+# print(Dated)
+print(year)

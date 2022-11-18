@@ -1,67 +1,115 @@
-import os
+import tkinter as tk
+from tkinter import ttk
+# from docx2pdf import convert
+from PIL import Image,ImageTk
 
-from openpyxl import load_workbook
+wind = tk.Tk()  # wind window name
+wind.title('windboard By Danish')  # title Name
+# wind = Tk()
+# wind.geometry("1600x1600")
+# bg = PhotoImage(file = "Web 1920 – 1(1).png")
 
-from docx import Document
-from docxtpl import DocxTemplate
+# # Show image using label
+# label1 = Label( wind, image = bg)
+# label1.place(x = 0, y = 0)
+# wind.iconbitmap('add icon link And Directory name')    # icon add
+
+# function coding start 
 
 
-# Open files
-main_path = r"C:\Users\hp\Desktop\Fedral board project\Fedral Board\Sample of single window screen"
+exp = " "          # global variable 
+# showing all data in display 
 
-a = "Application form for Migration Request"
+def press(num):
+    global exp
+    exp=exp + str(num)
+    equation.set(exp)
+# end 
 
-if(a == "HIGHER SECONDARY SCHOOL CERTIFICATE EXAMINATION WUPPLIMENTRY 2016"):
-    template_path = os.path.join(main_path, 'HIGHER SECONDARY SCHOOL CERTIFICATE EXAMINATION WUPPLIMENTRY 2016.docx')
-    
-if(a == "Application form for Migration Request"):
-    template_path = os.path.join(main_path, 'Application form for Migration Request.docx')
-    
 
-workbook_path = os.path.join(main_path, 'Template_data.xlsx')
+# function clear button
 
-workbook = load_workbook(workbook_path)
-template = DocxTemplate(template_path)
-worksheet = workbook["Input"]
+def clear():
+    global exp
+    exp = " "
+    equation.set(exp)
 
-to_fill_in = {'Company_Name' : None,
-              'Your_Company_Slogan' : None,
-              'Street_Address' : None,
-              'City': None,
-              'Date' : None,
-              'Recipient_Name': None,
-              'Recipient_Company_Name' : None,
-              'Recipient_Street_Address' : None,
-              'Recipient-City' : None,   
-              'Developer_Name' : None          
-              }
+# end 
 
-# Set the minimum number of columns. This will be 2.
-column = 2
 
-# print out the maximum columns that are filled in in the excel file. This is to see how many iterations the code will need.
-print(worksheet.max_column)
+# Enter Button Work Next line Function
 
-# Perform the following code block if the colomn amoumnt is less than the maximum column amount.
-while column <= worksheet.max_column:
+def action():
+  exp = " Next Line : "
+  equation.set(exp)
 
-   # Define the column index. This is a letter so you need to convert the column number to a letter (2+64) = B
-   col_index = chr(column+64)
-   row_index = 1
-   # Retrieve the values from excel document and store in dictionary you defined earlier on
-   # For each key in the dictionary, we look up the value in the excel file and store it instead of "none" in the dictionary
-   for key in to_fill_in:
-       cell = '%s%i' % (col_index, row_index)
-       to_fill_in[key] = worksheet[cell].value
-       row_index += 1
-    
-   # Fill in all the keys defined in the word document using the dictionary.
-   # The keys in de word document are identified by the {{}}symbols.
-   template.render(to_fill_in)
-   # Output the file to a docx document.
-   filename = str(to_fill_in['Company_Name']) + '_draft.docx'
-   filled_path = os.path.join(main_path, filename)
-   template.save(filled_path)
-   print("Done with %s" % str(to_fill_in['Company_Name']))
-   column += 1
-   
+# end function coding
+
+
+
+
+
+
+
+
+
+# Size window size
+wind.geometry('1010x250')         # normal size
+wind.maxsize(width=1010, height=250)      # maximum size
+wind.minsize(width= 1010 , height = 250)     # minimum size
+# end window size
+
+wind.configure(bg = 'green')    #  add background color
+
+# entry box
+equation = tk.StringVar()
+Dis_entry = ttk.Entry(wind,state= 'readonly',textvariable = equation)
+Dis_entry.grid(rowspan= 1 , columnspan = 100, ipadx = 999 , ipady = 20)
+# end entry box
+
+# add all button line wise 
+
+# First Line Button
+
+q = ttk.Button(wind,text = '1' , width = 6, command = lambda : press('1'))
+q.grid(row = 1 , column = 0, ipadx = 6 , ipady = 10)
+
+w = ttk.Button(wind,text = '2' , width = 6, command = lambda : press('2'))
+w.grid(row = 1 , column = 1, ipadx = 6 , ipady = 10)
+
+E = ttk.Button(wind,text = '3' , width = 6, command = lambda : press('3'))
+E.grid(row = 1 , column = 2, ipadx = 6 , ipady = 10)
+
+
+A = ttk.Button(wind,text = '4' , width = 6, command = lambda : press('4'))
+A.grid(row = 2 , column = 0, ipadx = 6 , ipady = 10)
+
+clear = ttk.Button(wind,text = 'Clear' , width = 6, command = clear)
+clear.grid(row = 1 , column = 5, ipadx = 6 , ipady = 10)
+
+
+
+S = ttk.Button(wind,text = '5' , width = 6, command = lambda : press('5'))
+S.grid(row = 2 , column = 1, ipadx = 6 , ipady = 10)
+
+D = ttk.Button(wind,text = '6' , width = 6, command = lambda : press('6'))
+D.grid(row = 2 , column = 2, ipadx = 6 , ipady = 10)
+
+
+Z = ttk.Button(wind,text = '7' , width = 6, command = lambda : press('7'))
+Z.grid(row = 3 , column = 0, ipadx = 6 , ipady = 10)
+
+
+X = ttk.Button(wind,text = '8' , width = 6, command = lambda : press('8'))
+X.grid(row = 3 , column = 1, ipadx = 6 , ipady = 10)
+
+
+C = ttk.Button(wind,text = '9' , width = 6, command = lambda : press('9'))
+C.grid(row = 3 , column = 2, ipadx = 6 , ipady = 10)
+
+
+
+
+
+
+wind.mainloop()  # using ending point
